@@ -2,7 +2,7 @@
 ID2223/FID3020 - Lab 2
 
 
-##Task 2
+##Task 2##
 Model: Llama-3.2-1B-Instruct
 #Data split
 For training and evaluating we used the first 15k examples in the FineTome-100k dataset. The dataset was split into: 
@@ -22,7 +22,7 @@ As a baseline we used the proposed hyperparameters from the provided notebook. T
 | 1250|    0.839500  |    0.838236  |
 | 1500|    0.827600  |    0.835800  |
 
-#Model centric approach
+#Model centric approach#
 For improving our model we used a model centric approach completing a grid search over the learning rate and also tested different amounts of trainable parameters (r) and the scaling factor (lora_alpha)
 
 While keeping r = 16 and lora_alpha = 16 the learning rate search yeilded:
