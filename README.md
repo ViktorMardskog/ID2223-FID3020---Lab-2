@@ -88,11 +88,11 @@ While keeping the best performance learning rate we changed to: r = 32 and lora_
 Increasing the r decreased the validation loss, which is expected due to more trainable parameters (although it is not necessarily always better with a higher r).
 After completing our small hyper parameter search we resulted in an improvement of ~1.5 percentages on the validation loss.
 
-Even though the validation loss was lowest in the last condition, we decided to keep r = 16 and lora_alpha= 32 for the test set evaluation. This decision was made due to longer training times with a higher r. 
+Even though the validation loss was lowest in the last condition, we decided to keep r = 16 and lora_alpha= 16 for the test set evaluation. This decision was made due to longer training times with a higher r. 
 
 For the final comparison on the holdout testset, we compared:
-- The baseline model (with learning_rate = 2e-4, r = 16, lora_alpha= 32)
-- The model trained on tuned hyperparameters (with learning_rate = 3e-4, r = 16, lora_alpha= 32)
+- The baseline model (with learning_rate = 2e-4, r = 16, lora_alpha= 16)
+- The model trained on tuned hyperparameters (with learning_rate = 3e-4, r = 16, lora_alpha= 16)
 
 Baseline: 
 
@@ -117,7 +117,16 @@ Learning rate: 3e-4
 | 1250 | 0.833400      | 0.816040        |
 | 1500 | 0.824400      | 0.812596        |
 
-This yielded in an improvement of ~0.65% in loss. It is important that the loss was lower on the test set aswell to show that the performance increase not only holds for the validation set (which was used for tuning the parameters). We believe this test loss could be reduced furhter with higher more lora layers (higher r) as increasing r to 32 reduced validation loss. Furthermore, tuning other parameters, such as the number of epochs and weight decay, could have resultet in a better final model. This was not, however, explored further. 
+This yielded in an improvement of ~0.65% in loss. It is important that the loss was lower on the test set aswell to show that the performance increase not only holds for the validation set (which was used for tuning the parameters). We believe this test loss could be reduced furhter with higher more lora layers (higher r) as increasing r to 32 reduced validation loss. 
+
+Furthermore, tuning other parameters, such as the number of epochs and weight decay, could have resultet in a better final model. This was not, however, explored further. 
+
+Model-centric improvements that could have been used includes:
+- Increasing the number of epochs
+- Implementing early stopping (especially important if the number of epochs are high)
+- Tuneing more hyperparameters (such as experimenting with weight decay, batch size, LoRA dropout, warmup_steps, etc)
+- Experimenting with different schedulars, different LoRA target modules, using rank-stabilized LoRA (setting use_rslora to True) to stabilize training, different optimizers, 
+- Testing more foundation models
 
 We also tested Llama-3.2-3B-Instruct on the same test set (see the following section).
 
@@ -134,7 +143,7 @@ Model: Llama-3.2-3B-Instruct
 | 1250 | 0.707000      | 0.698721        |
 | 1500 | 0.704500      | 0.695843        |
 
-We can see that the results from the bigger model was way better than the smaller 1b model. When testing the model on the UI on huggingface (CPU), we noticed an improvement in response quality. However, the response time also increased compared to using the 1B model. As we use the model to help with brainstoorming, a lower response time was deemed more important. For our brainstoorming task, the response quality does not have to be maximized. It is more about giving the user ideas fast. Therefore, we decided that the smaller model was more suitable for our brainstorming task.
+We can see that the results from the bigger model were better than the smaller 1b model. When testing the model on the UI on huggingface (CPU), we noticed an improvement in response quality. However, the response time also increased compared to using the 1B model. As we use the model to help with brainstoorming, a lower response time was deemed more important. For our brainstoorming task, the response quality does not have to be maximized. It is more about giving the user ideas fast. Therefore, we decided that the smaller model was more suitable for our brainstorming task.
 
 
 # Data centric approach
@@ -144,7 +153,7 @@ There are many high quality dataset that can be used for fine-tuning. Based on o
 
 https://huggingface.co/datasets/Wanfq/Explore_Instruct_Brainstorming_10k
 
-We ended up using a model trained on this dataset for our brainstoorming function, and a model finetuned on the FineTome dataset for refining and evaluating ideas. 
+We ended up using a model trained on this dataset for our brainstoorming function, and a model finetuned on the FineTome dataset for refining and evaluating ideas. When fine-tuning on the brainstorming dataset, 8K examples were used for training and we used the same hyperparameter settings as for the final model that was fine-tuned on FineTome-100k. 
 
 Due to this being another dataset it was very difficult to compare the loss between the models, but we performed a small qualitatative comparison and generally found (subjectivly) that the brainstoorming answers from the model trained on the brainstoorming dataset were slightly better and the model was also better at formatting the ideas into bulletpoints. 
 
@@ -155,5 +164,7 @@ Other data-centric ways of improving the model could include:
 - Removing duplicates
 - Filtering the dataset to only include relevant examples
 
-Other datasources that can be used 
 
+# UI
+Our UI is made for brainstoorming and lets the user create different ideas and write about them. Then they can choose to refine the idea, brainstoorm and evaluate the ideas using an LLM. 
+The free huggingface CPU is currently used, which makes the model quite slow. We tried using the full models in the beginning, but found that the inference time was too high. Therefore, the models were exported to GGUF & quantized using q4_k_m. This improved the speed and enabled us to run the models on free CPU with limited RAM. It should be noted that this could impact the quality negativly, but we did not observe a noticeable difference. Furthermore, we decided to use finetuned Llama-3.2-1B-Instruct models instead of finetuned Llama-3.2-3B-Instruct models as this improved speed, which is very important for a brainstoorming assistant. Úsing a GPU for inference would have resulted in much faster responses and would have allowed for using a larger model. 
