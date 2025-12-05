@@ -1,0 +1,91 @@
+Very small qualitative comparison:
+
+We compare brainstorming function between these models (using the brainstorming button in combination with expanded ideas):
+- Model trained on 12K exampels from FineTome-100k
+- Model trained on 8K from Wanfq/Explore_Instruct_Brainstorming_10k
+
+Note that this is not meant to provide strong evidence for which of the models is better, but rather gives an overview of how answers could differ.
+
+Four examples: 
+1.Expanded idea: "A tool sharing app to borrow tools from neighbours."
+
+
+Explore_Instruct_Brainstorming_10k model:
+“Here are three features that the tool sharing app could include:
+1. A list of available tools and the user's location
+2. A calendar of upcoming tool borrowing opportunities
+3. A rating system that allows users to rate and review tools shared by others.”
+
+
+FineTome-100k model:
+“• Smart matching: The app could use AI to match users with the right tool based on their location and the tool they need to borrow.
+• Real-time updates: Users could be notified when someone needs a tool and they should be available to borrow it.
+• Safety features: The app could include safety features such as a secure messaging system to handle tool borrowing and borrowing from a trusted neighbor.”
+
+
+GPT voted for: FineTome answer.
+
+
+2. Expanded idea: "A neighborhood alert app for sharing local updates."
+
+
+Explore_Instruct_Brainstorming_10k model:
+“Here are three features this idea could include:
+• A community newsfeed that aggregates and curates the best stories from local residents and businesses.
+• A social media feature that allows users to share their local updates with the community.
+• A customizable notification system that allows users to receive alerts for local updates based on their interests.”
+
+
+FineTome-100k model:
+“• Social Sharing: Users can share updates on the app with their social media networks.
+ 
+• Neighborhood Map: A map view of the neighborhood with points indicating where users have shared updates.
+ 
+• Nearby User Feed: A feed of updates shared by nearby users, helping in finding common ground in the neighborhood.”
+
+
+GPT voted for: Explore_Instruct_Brainstorming_10k
+
+
+3. Expanded idea: "Kids’ chore tracker app in which parents assign tasks and kids check them off."
+
+
+Explore_Instruct_Brainstorming_10k model:
+“Here are three features your app could include:
+
+
+• In-app gamification that rewards kids for completing their assigned tasks
+• Intuitive and customizable task lists that align with kids' ages and abilities
+• Social sharing features that allow kids to share their progress with parents and other family members.”
+
+
+FineTome-100k model:
+“• Task customization
+• Time tracking
+• Progress updates”
+
+
+
+
+GPT voted for: Explore_Instruct_Brainstorming_10k
+
+
+4. Expanded idea: "Frequent-item reorder app that reminds you when recurring items might run out."
+
+
+Explore_Instruct_Brainstorming_10k model:
+“• Voice assistant integration for easy reminders and shopping cart updates.
+• Automatic expiration tracking for recurring items, based on purchase frequency and item history.
+• Push notifications that remind you of upcoming expiration dates and the expiration status of your purchases.”
+
+
+FineTome-100k model:
+“• Personalized reminders: users can set reminders for specific items to remind them when they run out.
+• Item history: the app could keep a record of how long each item has been stocked, so users know how long their items have been there.
+• Social sharing: users could share their stock levels with friends, so they know when to buy more for their friends.”
+
+
+GPT voted for: Explore_Instruct_Brainstorming_10k
+
+Link to the chatt used for GPT voting:
+https://chatgpt.com/share/6933078e-0468-8002-a768-1603adcd88a7
