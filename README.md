@@ -155,7 +155,7 @@ https://huggingface.co/datasets/Wanfq/Explore_Instruct_Brainstorming_10k
 
 We ended up using a model trained on this dataset for our brainstoorming function, and a model finetuned on the FineTome dataset for refining and evaluating ideas. When fine-tuning on the brainstorming dataset, 8K examples were used for training and we used the same hyperparameter settings as for the final model that was fine-tuned on FineTome-100k. 
 
-Due to this being another dataset it was very difficult to compare the loss between the models, but we performed a small qualitatative comparison and generally found (subjectivly) that the brainstoorming answers from the model trained on the brainstoorming dataset were slightly better and the model was also better at formatting the ideas into bulletpoints. 
+Due to this being another dataset it was very difficult to compare the loss between the models, but we performed a small qualitatative comparison and generally found (subjectivly) that the brainstoorming answers from the model trained on the brainstoorming dataset were slightly better and the model was also better at formatting the ideas into bulletpoints. (We also let ChatGPT vote on four examples generated from each model on the same four prompts, and it perfered the brainstoorming answers from the model trained on the brainstoorming dataset 3/4 times (see here: ))
 
 If there are too few high quality datasets in the domain one is interested in, a distillation approach could be used. A better, larger model can used to generate either answers to an unlabelled dataset or quesion-answer pairs in the relevant domain. A high quality LLM like GPT5 could be used to create a dataset in the relevant domain.  
 
