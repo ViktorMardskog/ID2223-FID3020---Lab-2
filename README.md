@@ -3,7 +3,7 @@ ID2223/FID3020 - Lab 2
 
 
 ##Task 2
-
+Model: Llama-3.2-1B-Instruct
 #Data split
 For training and evaluating we used the first 15k examples in the FineTome-100k dataset. The dataset was split into: 
 - 12k training dataset
@@ -12,15 +12,6 @@ For training and evaluating we used the first 15k examples in the FineTome-100k 
 
 #Baseline
 As a baseline we used the proposed hyperparameters from the provided notebook. This resulted in 
-
-| Step| Training Loss| Validation Loss |
-|-----|--------------|-----------------|
-| 250 |    -  |    -  |
-| 500 |    -  |    -  |
-| 750 |    -  |    -  |
-| 1000|    -  |    -  |
-| 1250|    -  |    -  |
-| 1500|    -  |    -  |
 
 | Step| Training Loss| Validation Loss |
 |-----|--------------|-----------------|
@@ -70,6 +61,58 @@ While keeping the best performance learning rate we changed r = 32 and lora_alph
 | 1000 | 0.830100      | 0.834480        |
 | 1250 | 0.825700      | 0.825617        |
 | 1500 | 0.817700      | 0.821687        |
+
+Increasing the amount of lora layers decreased the loss which is expected due to more trainable parameters.
+After completing our small hyper parameter search we resulted in an improvement of ~1.5 percentages on the validation loss.
+
+Due to longer training times with a higher r we decided to evaluate only with the new learning rate: 
+
+Baseline: 
+
+| Step | Training Loss | Validation Loss |
+|------|---------------|-----------------|
+| 250  | 0.964800      | 0.863950        |
+| 500  | 0.895100      | 0.845884        |
+| 750  | 0.889500      | 0.835044        |
+| 1000 | 0.841500      | 0.827129        |
+| 1250 | 0.839400      | 0.821827        |
+| 1500 | 0.827500      | 0.819001        |
+
+
+Learning rate: 3e-4
+
+| Step | Training Loss | Validation Loss |
+|------|---------------|-----------------|
+| 250  | 0.964300      | 0.862609        |
+| 500  | 0.893100      | 0.843696        |
+| 750  | 0.886000      | 0.831871        |
+| 1000 | 0.837000      | 0.822710        |
+| 1250 | 0.833400      | 0.816040        |
+| 1500 | 0.824400      | 0.812596        |
+
+This yielded in an improvement of ~0.65% in loss. We believe this loss could be reduced furhter with higher more lora layers (higher r) and of course longer training.
+
+#Data centric approach
+Based on our idea to create a brainstorming llm to help out generate and evaluate ideas we decided to train a model on brainstorming dataset: 
+
+https://huggingface.co/datasets/Wanfq/Explore_Instruct_Brainstorming_10k
+
+Due to this being another dataset it was very difficult to compare the loss between the models but in our opinion the ideas were better and the model was also better at formatting the ideas into bulletpoints. 
+
+#Different foundation model 
+We also tried to use another model and finetune on the FineTome-100k dataset with the same split mentioned before.
+Model: Llama-3.2-3B-Instruct
+
+| Step | Training Loss | Validation Loss |
+|------|---------------|-----------------|
+| 250  | 0.836200      | 0.741301        |
+| 500  | 0.750000      | 0.724180        |
+| 750  | 0.759500      | 0.713102        |
+| 1000 | 0.723400      | 0.704507        |
+| 1250 | 0.707000      | 0.698721        |
+| 1500 | 0.704500      | 0.695843        |
+
+We can see that the results from the bigger model was way better then the smaller 1b model but when testing this model at inference time on huggingface we decided that the smaller model was more suitable for our brainstorming task.
 
 
 
