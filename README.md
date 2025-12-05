@@ -2,7 +2,7 @@
 ID2223/FID3020 - Lab 2
 
 
-##Task 2##
+## Task 2
 Model: Llama-3.2-1B-Instruct
 #Data split
 For training and evaluating we used the first 15k examples in the FineTome-100k dataset. The dataset was split into: 
@@ -10,7 +10,7 @@ For training and evaluating we used the first 15k examples in the FineTome-100k 
 - 1.5k validation dataset
 - 1.5k test dataset
 
-#Baseline
+# Baseline
 As a baseline we used the proposed hyperparameters from the provided notebook. This resulted in 
 
 | Step| Training Loss| Validation Loss |
@@ -22,7 +22,7 @@ As a baseline we used the proposed hyperparameters from the provided notebook. T
 | 1250|    0.839500  |    0.838236  |
 | 1500|    0.827600  |    0.835800  |
 
-#Model centric approach#
+# Model centric approach#
 For improving our model we used a model centric approach completing a grid search over the learning rate and also tested different amounts of trainable parameters (r) and the scaling factor (lora_alpha)
 
 While keeping r = 16 and lora_alpha = 16 the learning rate search yeilded:
@@ -92,14 +92,14 @@ Learning rate: 3e-4
 
 This yielded in an improvement of ~0.65% in loss. We believe this loss could be reduced furhter with higher more lora layers (higher r) and of course longer training.
 
-#Data centric approach
+# Data centric approach
 Based on our idea to create a brainstorming llm to help out generate and evaluate ideas we decided to train a model on brainstorming dataset: 
 
 https://huggingface.co/datasets/Wanfq/Explore_Instruct_Brainstorming_10k
 
 Due to this being another dataset it was very difficult to compare the loss between the models but in our opinion the ideas were better and the model was also better at formatting the ideas into bulletpoints. 
 
-#Different foundation model 
+# Different foundation model 
 We also tried to use another model and finetune on the FineTome-100k dataset with the same split mentioned before.
 Model: Llama-3.2-3B-Instruct
 
