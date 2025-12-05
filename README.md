@@ -2,6 +2,15 @@
 ID2223/FID3020 - Lab 2
 
 
+
+# Hugginface Space
+
+All the models have been converted to gguf format and the brainstorming idea tool that we have developed work on a free CPU but due to it being a bit not user friendly we offer two ways to interact with our own creative brainstorming tool. One on a free hugginface provided CPU and one on a much faster GPU.
+
+CPU: 
+
+GPU: 
+
 ## Task 2
 Model: Llama-3.2-1B-Instruct
 #Data split
