@@ -1,6 +1,8 @@
 # ID2223-FID3020---Lab-2
 ID2223/FID3020 - Lab 2
 
+Note that we used this notebook as a base for our finetuning notebook: 
+https://colab.research.google.com/drive/1T5-zKWM_5OD21QHwXHiV9ixTRR7k3iB9?usp=sharing#scrollTo=IqM-T1RTzY6C
 
 
 # Hugginface Space
