@@ -101,13 +101,6 @@ Learning rate: 3e-4
 
 This yielded in an improvement of ~0.65% in loss. We believe this loss could be reduced furhter with higher more lora layers (higher r) and of course longer training.
 
-# Data centric approach
-Based on our idea to create a brainstorming llm to help out generate and evaluate ideas we decided to train a model on brainstorming dataset: 
-
-https://huggingface.co/datasets/Wanfq/Explore_Instruct_Brainstorming_10k
-
-Due to this being another dataset it was very difficult to compare the loss between the models but in our opinion the ideas were better and the model was also better at formatting the ideas into bulletpoints. 
-
 # Different foundation model 
 We also tried to use another model and finetune on the FineTome-100k dataset with the same split mentioned before.
 Model: Llama-3.2-3B-Instruct
@@ -122,6 +115,15 @@ Model: Llama-3.2-3B-Instruct
 | 1500 | 0.704500      | 0.695843        |
 
 We can see that the results from the bigger model was way better then the smaller 1b model but when testing this model at inference time on huggingface we decided that the smaller model was more suitable for our brainstorming task.
+
+# Data centric approach
+Based on our idea to create a brainstorming llm to help out generate and evaluate ideas we decided to train a model on brainstorming dataset: 
+
+https://huggingface.co/datasets/Wanfq/Explore_Instruct_Brainstorming_10k
+
+Due to this being another dataset it was very difficult to compare the loss between the models but in our opinion the ideas were better and the model was also better at formatting the ideas into bulletpoints. 
+
+
 
 
 
