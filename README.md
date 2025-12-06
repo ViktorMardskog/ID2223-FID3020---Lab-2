@@ -15,6 +15,7 @@ GPU:
 
 ## Task 2
 Model: Llama-3.2-1B-Instruct
+
 #Data split
 For training and evaluating we used the first 15k examples in the FineTome-100k dataset. The dataset was split into: 
 - 12k training dataset
