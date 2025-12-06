@@ -50,6 +50,7 @@ We selected the learning rate yielded the lowest Validation loss and then also s
 r changes the number of trainable parameter, and lora_alpha is a scaling factor.
 
 While keeping r = 16 and lora_alpha = 16 the learning rate search yeilded:
+
 Learning rate = 1e-4
 
 | Step | Training Loss | Validation Loss |
@@ -75,7 +76,7 @@ Learning rate = 3e-4
 We noticed that, by increasing the learning rate, we gained some improvements in the loss of the model.
 The baseline parameters (LR= 2e-4) had a final validation loss of 0.8358, while a learning rate of 3e-4 gave 0.8298 in validation loss. 
 
-While keeping the best performance learning rate we changed to: r = 32 and lora_alpha = 32 
+While keeping the best performance learning rate we changed to: r = 32 and lora_alpha = 32. These results were obtained:
 
 | Step | Training Loss | Validation Loss |
 |------|---------------|-----------------|
